@@ -1,0 +1,35 @@
+signin
+dksshwns@naver.com
+123456
+mode
+
+signup
+dksshwns@naver.com
+hojun
+123456
+
+CREATE TABLE branch (
+    bid SERIAL PRIMARY KEY,       -- 자동 증가하는 Primary Key
+    uid VARCHAR(255), NOT          -- 문자열 필드 (외래키를 참조할 열)
+    path VARCHAR(255) NOT NULL,   -- NOT NULL 제약을 가진 문자열 필드
+    CONSTRAINT fk_uid FOREIGN KEY (uid) REFERENCES authentification(uid) -- 외래키 정의
+);
+
+
+CREATE TABLE authentification (
+    uid VARCHAR(255) PRIMARY KEY,  -- 기본 키로 설정된 문자열 필드
+    username VARCHAR(255) NOT NULL,  -- NOT NULL 제약 조건이 적용된 문자열 필드
+    email VARCHAR(255) NOT NULL     -- NOT NULL 제약 조건이 적용된 문자열 필드
+);
+
+CREATE TABLE transaction (
+    tid SERIAL PRIMARY KEY,                  -- 자동 증가하는 Primary Key
+    t_date DATE NOT NULL,                    -- NOT NULL 제약을 가진 날짜 필드
+    branch VARCHAR(255) NOT NULL,            -- NOT NULL 제약을 가진 문자열 필드
+    cashflow INTEGER NOT NULL,               -- NOT NULL 제약을 가진 정수형 필드
+    description VARCHAR(255),                -- 문자열 필드 (NULL 허용)
+    receipt VARCHAR(255),                    -- 문자열 필드 (NULL 허용)
+    c_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 기본값이 현재 시간인 타임스탬프 필드
+    uid VARCHAR(255) NOT NULL,               -- 외래 키로 설정된 문자열 필드
+    CONSTRAINT transaction_uid_fkey FOREIGN KEY (uid) REFERENCES authentification(uid) -- 외래 키 제약
+);

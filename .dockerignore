@@ -1,0 +1,27 @@
+# 가상환경 폴더
+venv/
+__pycache__/
+
+# Git 관련 파일/폴더
+.git/
+.gitignore
+
+# 도커 관련 파일
+docker-compose.yml
+Dockerfile
+
+# 빌드 아티팩트
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+
+# IDE 설정 파일
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# .env 파일은 빌드 과정에서 제외
+.env
